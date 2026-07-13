@@ -234,3 +234,7 @@ artifacts/bert_model/
 # Logs
 logs/
 *.log
+
+artifacts/bert_model/
+*.safetensors
+*.bin
