@@ -39,10 +39,26 @@ Representative visualizations from the exploratory data analysis are shown below
 ### Word Clouds
 <img width="507" height="867" alt="Screenshot 2026-07-14 at 12 12 50 AM" src="https://github.com/user-attachments/assets/db1d998b-f0cf-47a4-95f3-378da7d6de3b" />
 
+## 4. Text Preprocessing
+The tweet text was cleaned before feature extraction and model training to reduce noise and create a consistent representation of the data. The preprocessing pipeline included the following steps:
 
+- Removed tweets with missing text.
+- Converted all text to lowercase.
+- Removed URLs and user mentions (`@username`).
+- Removed the `#` symbol while preserving the associated hashtag word.
+- Removed punctuation and numerical characters.
+- Removed extra whitespace and trimmed leading/trailing spaces.
+- Applied WordNet lemmatization to convert words to their base verb forms (e.g., *cancelled* → *cancel*).
 
+The original tweet text was preserved separately for error analysis, while the processed text was used for feature extraction and model training.
 
-## 4. Classic ML Results
+## 5. Feature Extraction
+Two text vectorization techniques were evaluated using **Logistic Regression** with **5-fold cross-validation** to determine the most effective feature representation for the classical machine learning models.
 
+| Feature Extraction | Accuracy | Macro Precision | Macro Recall | Macro F1 |
+|-------------------|---------:|----------------:|-------------:|---------:|
+| CountVectorizer | 0.7875 | 0.7385 | **0.7190** | **0.7271** |
+| TF-IDF | **0.7915** | **0.7741** | 0.6797 | 0.7133 |
 
+Although TF-IDF achieved slightly higher accuracy and macro precision, **CountVectorizer** produced the highest **Macro F1 score**, which was selected as the primary evaluation metric for comparing feature representations. Therefore, CountVectorizer was used for the subsequent classical machine learning experiments.
 
