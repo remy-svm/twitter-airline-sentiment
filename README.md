@@ -62,3 +62,46 @@ Two text vectorization techniques were evaluated using **Logistic Regression** w
 
 Although TF-IDF achieved slightly higher accuracy and macro precision, **CountVectorizer** produced the highest **Macro F1 score**, which was selected as the primary evaluation metric for comparing feature representations. Therefore, CountVectorizer was used for the subsequent classical machine learning experiments.
 
+## 6. Baseline Classical Machine Learning Models
+
+### Model Selection
+
+After selecting **CountVectorizer** as the feature extraction method, five classical machine learning models were evaluated using **5-fold cross-validation**:
+
+- Logistic Regression
+- Naive Bayes
+- Linear Support Vector Machine (Linear SVM)
+- Random Forest
+- XGBoost
+
+Model performance was evaluated using **Accuracy**, **Macro Precision**, **Macro Recall**, and **Macro F1 Score**.
+
+| Model | Accuracy | Macro Precision | Macro Recall | Macro F1 |
+|-------|---------:|----------------:|-------------:|---------:|
+| Logistic Regression | **0.7929** | 0.7434 | **0.7274** | **0.7349** |
+| Naive Bayes | 0.7687 | 0.7075 | 0.7162 | 0.7112 |
+| Linear SVM | 0.7623 | 0.7010 | 0.7005 | 0.7005 |
+| Random Forest | 0.7687 | 0.7485 | 0.6360 | 0.6709 |
+| XGBoost | 0.7920 | **0.7571** | 0.7015 | 0.7244 |
+
+**Logistic Regression** achieved the highest **Macro F1 score** while also obtaining the highest accuracy and macro recall among the evaluated models. Consequently, Logistic Regression was selected as the strongest classical machine learning baseline for comparison with the subsequent deep learning models.
+
+### Error Analysis
+
+To better understand the strengths and limitations of the baseline model, a confusion matrix, classification report, and misclassified tweets were analyzed.
+
+*(Insert confusion matrix figure here.)*
+
+The confusion matrix shows that **negative tweets were classified most accurately**, achieving an F1 score of **0.83**. Performance was lower for **neutral** (F1 = **0.55**) and **positive** (F1 = **0.61**) tweets, indicating that these classes are more difficult to distinguish.
+
+Inspection of misclassified tweets revealed several common sources of error:
+
+- **Mixed sentiment:** Tweets containing both positive and negative opinions (e.g., flight delays accompanied by praise for the crew).
+- **Short or ambiguous messages:** Very short tweets often lacked enough context for reliable classification.
+- **Context-dependent language:** Questions, travel updates, and customer service conversations were frequently predicted as neutral despite expressing sentiment.
+- **Implicit sentiment:** Some tweets expressed frustration or satisfaction without using strong sentiment words, making them difficult for a bag-of-words model to classify correctly.
+
+These observations highlight a key limitation of classical bag-of-words models: they represent words independently and cannot capture contextual relationships or nuanced language. This motivated the use of a deep learning model, followed by fine-tuning a pretrained BERT model to better model contextual information.
+
+
+
