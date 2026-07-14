@@ -121,10 +121,10 @@ The best-performing model weights were restored before evaluation on the test se
 
 | Metric | Score |
 |--------|------:|
-| Accuracy | **0.77** |
-| Macro Precision | **0.70** |
-| Macro Recall | **0.72** |
-| Macro F1 | **0.71** |
+| Accuracy | **0.76** |
+| Macro Precision | **0.69** |
+| Macro Recall | **0.70** |
+| Macro F1 | **0.69** |
 
 The PyTorch baseline did not outperform the best classical machine learning model (Logistic Regression + CountVectorizer). One possible reason is that the baseline neural network used a simple architecture consisting of an embedding layer, mean pooling, and a linear classifier trained from scratch. In contrast, CountVectorizer combined with Logistic Regression provides a strong baseline for text classification by effectively leveraging informative word frequencies in a dataset of this size. To better capture the context and meaning of each tweet, the next step was to fine-tune a **pretrained BERT model**.
 
