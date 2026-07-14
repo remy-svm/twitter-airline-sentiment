@@ -162,7 +162,7 @@ These results demonstrate the advantage of transfer learning for NLP tasks. By s
 
 The fine-tuned BERT model was deployed as a REST API using **FastAPI**. The API loads the saved model and tokenizer at startup and exposes a prediction endpoint that accepts raw tweet text and returns the predicted sentiment.
 
----
+
 
 ### API Endpoint
 
@@ -170,7 +170,7 @@ The fine-tuned BERT model was deployed as a REST API using **FastAPI**. The API 
 |--------|-------|-------------|
 | POST | `/predict` | Predicts the sentiment of an input tweet. |
 
----
+
 
 ### Interactive API Documentation
 
@@ -179,7 +179,6 @@ FastAPI automatically generates interactive API documentation using **Swagger UI
 <img width="877" height="802" alt="swagger_docs" src="https://github.com/user-attachments/assets/6d993e5d-bb30-4f2a-b5e5-3447b4171d19" />
 
 
----
 
 ### Prediction Example
 
@@ -189,27 +188,27 @@ FastAPI automatically generates interactive API documentation using **Swagger UI
 
 
 ## 10. Docker
-
 To simplify deployment and ensure a reproducible environment, the FastAPI application was containerized using **Docker**.
+The Docker image packages:
 
-The Docker image includes:
+- The FastAPI application
+- The fine-tuned BERT model and tokenizer
+- All required Python dependencies
+- The application startup configuration
 
-- Python runtime
-- Required Python packages
-- Fine-tuned BERT model
-- FastAPI application
-- Uvicorn web server
-
-The application can be built and started using:
+The application can be built and run using:
 
 ```bash
 docker build -t bert-sentiment-api .
 docker run -p 8000:8000 bert-sentiment-api
 ```
 
----
+Containerization ensures that the application can be deployed consistently across different environments without requiring manual dependency installation.
 
-## AWS Deployment
+
+
+
+## 11. AWS Deployment
 
 The Dockerized application was deployed to **Amazon EC2**.
 
@@ -237,9 +236,17 @@ The deployment process consisted of:
 
 The deployed API successfully served real-time sentiment predictions through the REST endpoint.
 
-*(Insert screenshots of the EC2 instance, ECR repository, and successful API request here.)*
+### EC2 Instance
 
----
+<img width="1327" height="67" alt="ec2_instance" src="https://github.com/user-attachments/assets/c54ddab1-ce84-4869-9260-08390992b082" />
+
+
+
+### ECR Repository
+
+<img width="1159" height="104" alt="ecr_repository" src="https://github.com/user-attachments/assets/8208c15d-2130-4bf0-bf75-0096c354b491" />
+
+
 
 ## Results
 
