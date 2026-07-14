@@ -6,10 +6,7 @@ This project classifies the sentiment of airline-related tweets as positive, neu
 ## 2. Project Pipeline 
 Raw Tweets -> Text Preprocessing -> Feature Extraction -> Baseline Model Comparison -> PyTorch Baseline -> Fine-Tune BERT -> FastAPI -> Docker -> AWS EC2 Deployment
 
-## 3. Tech Stack
-Python $\cdot$ Pandas $\cdot$ Scikit-learn $\cdot$ PyTorch $\cdot$ Hugging Face Transformers $\cdot$ FastAPI $\cdot$ Docker $\cdot$ AWS EC2 $\cdot$ Amazon ECR
-
-## 4. Dataset
+## 3. Dataset
 This project uses the **Twitter US Airline Sentiment** dataset from Kaggle. The dataset contains customer tweets directed at major U.S. airlines, with each tweet manually labeled according to its overall sentiment.
 
 - **Source:** Kaggle – Twitter US Airline Sentiment
@@ -20,3 +17,35 @@ This project uses the **Twitter US Airline Sentiment** dataset from Kaggle. The 
   - Positive
 
 The dataset also includes additional metadata such as the airline name, confidence score, and the reason for negative sentiment. In this project, only the tweet text and sentiment labels are used for model training.
+
+## 4. Exploratory Data Analysis
+Before model development, exploratory data analysis (EDA) was performed to better understand the dataset.
+
+The analysis included:
+
+- Distribution of sentiment labels
+- Distribution of tweets across airlines
+- Most frequent words
+- Word clouds for positive, neutral, and negative tweets
+- Tweet length analysis
+
+The EDA revealed that the dataset is imbalanced, with negative tweets representing the majority class. To ensure that performance on all three sentiment classes was considered equally, models were evaluated using macro precision, macro recall, and macro F1 score, in addition to accuracy. 
+
+# Sentiment Distribution
+<img width="582" height="497" alt="Screenshot 2026-07-14 at 12 10 17 AM" src="https://github.com/user-attachments/assets/9915b9ba-1c22-4c8f-9543-8d97b86b61ac" />
+
+
+
+☁️ Word Clouds
+(image showing the three word clouds)
+
+📈 Tweet Length Distribution
+(image)
+
+
+
+
+## 4. Classic ML Results
+
+
+
