@@ -107,5 +107,23 @@ Inspection of misclassified tweets revealed several common sources of error:
 
 These observations highlight a key limitation of classical bag-of-words models: they represent words independently and cannot capture contextual relationships or nuanced language. This motivated the use of a deep learning model, followed by fine-tuning a pretrained BERT model to better model contextual information.
 
+## 7. PyTorch Baseline Model
+
+To establish a deep learning baseline, a simple neural network was implemented in **PyTorch**. The model consists of an **embedding layer**, **mean pooling**, and a **fully connected classification layer**. To improve generalization, **early stopping** was introduced using the **validation Macro F1 score** as the monitoring metric.
+
+- **Patience:** 8 epochs
+- **Best validation metric:** Macro F1
+- **Training stopped at:** Epoch 28
+
+The best-performing model weights were restored before evaluation on the test set.
+
+### Final Performance
+
+| Metric | Score |
+|--------|------:|
+| Accuracy | **0.77** |
+| Macro Precision | **0.70** |
+| Macro Recall | **0.72** |
+| Macro F1 | **0.71** |
 
 
