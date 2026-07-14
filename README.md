@@ -31,16 +31,11 @@ The analysis included:
 
 The EDA revealed that the dataset is imbalanced, with negative tweets representing the majority class. To ensure that performance on all three sentiment classes was considered equally, models were evaluated using macro precision, macro recall, and macro F1 score, in addition to accuracy. 
 
-# Sentiment Distribution
+### Sentiment Distribution
 <img width="582" height="497" alt="Screenshot 2026-07-14 at 12 10 17 AM" src="https://github.com/user-attachments/assets/9915b9ba-1c22-4c8f-9543-8d97b86b61ac" />
 
-
-
-☁️ Word Clouds
-(image showing the three word clouds)
-
-📈 Tweet Length Distribution
-(image)
+### Word Clouds
+<img width="507" height="867" alt="Screenshot 2026-07-14 at 12 12 50 AM" src="https://github.com/user-attachments/assets/db1d998b-f0cf-47a4-95f3-378da7d6de3b" />
 
 
 
