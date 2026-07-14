@@ -248,7 +248,7 @@ The deployed API successfully served real-time sentiment predictions through the
 
 
 
-## Results
+## 12. Results
 
 The project demonstrates a complete machine learning workflow, from data exploration to production deployment.
 
@@ -274,19 +274,6 @@ The project demonstrates a complete machine learning workflow, from data explora
 | Macro F1 | **0.77** |
 
 The fine-tuned BERT model achieved the strongest performance among all models evaluated in this project.
-
----
-
-## Future Improvements
-
-Potential extensions to this project include:
-
-- Hyperparameter optimization using GridSearchCV or Optuna.
-- Experimenting with additional transformer models such as RoBERTa and DistilBERT.
-- Implementing automated CI/CD pipelines using GitHub Actions.
-- Deploying the application with scalable cloud services such as AWS ECS or Kubernetes.
-- Monitoring model performance in production and periodically retraining the model with newly collected data.
-- Optimizing inference speed through model quantization or ONNX Runtime.
 
 
 
