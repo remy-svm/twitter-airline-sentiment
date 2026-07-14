@@ -90,7 +90,11 @@ Model performance was evaluated using **Accuracy**, **Macro Precision**, **Macro
 
 To better understand the strengths and limitations of the baseline model, a confusion matrix, classification report, and misclassified tweets were analyzed.
 
-*(Insert confusion matrix figure here.)*
+| Actual / Predicted | Negative | Neutral | Positive |
+|--------------------|---------:|--------:|---------:|
+| **Negative** | 1522 | 222 | 91 |
+| **Neutral** | 209 | 355 | 56 |
+| **Positive** | 115 | 84 | 274 |
 
 The confusion matrix shows that **negative tweets were classified most accurately**, achieving an F1 score of **0.83**. Performance was lower for **neutral** (F1 = **0.55**) and **positive** (F1 = **0.61**) tweets, indicating that these classes are more difficult to distinguish.
 
