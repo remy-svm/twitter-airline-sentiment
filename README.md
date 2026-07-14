@@ -31,6 +31,8 @@ The analysis included:
 
 The EDA revealed that the dataset is imbalanced, with negative tweets representing the majority class. To ensure that performance on all three sentiment classes was considered equally, models were evaluated using macro precision, macro recall, and macro F1 score, in addition to accuracy. 
 
+Representative visualizations from the exploratory data analysis are shown below.
+
 ### Sentiment Distribution
 <img width="582" height="497" alt="Screenshot 2026-07-14 at 12 10 17 AM" src="https://github.com/user-attachments/assets/9915b9ba-1c22-4c8f-9543-8d97b86b61ac" />
 
