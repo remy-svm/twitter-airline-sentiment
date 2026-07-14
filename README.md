@@ -129,7 +129,6 @@ The best-performing model weights were restored before evaluation on the test se
 The PyTorch baseline did not outperform the best classical machine learning model (Logistic Regression + CountVectorizer). One possible reason is that the baseline neural network used a simple architecture consisting of an embedding layer, mean pooling, and a linear classifier trained from scratch. In contrast, CountVectorizer combined with Logistic Regression provides a strong baseline for text classification by effectively leveraging informative word frequencies in a dataset of this size. To better capture the context and meaning of each tweet, the next step was to fine-tune a **pretrained BERT model**.
 
 ## 8. Fine-Tuned BERT
-## Fine-Tuned BERT
 
 To improve upon the classical machine learning and PyTorch baseline models, a **BERT (`bert-base-uncased`)** model was fine-tuned using the **Hugging Face Transformers** library. Unlike the previous models, BERT leverages pretrained contextual language representations, allowing it to better understand the meaning of words within the context of each tweet.
 
@@ -159,7 +158,128 @@ The fine-tuned BERT model achieved the best overall performance among all models
 These results demonstrate the advantage of transfer learning for NLP tasks. By starting from a pretrained language model and fine-tuning it on the airline sentiment dataset, BERT was able to learn more robust representations of tweet semantics and produce the strongest sentiment classifier in this project.
 
 
+## 9. FastAPI
 
+The fine-tuned BERT model was deployed as a REST API using **FastAPI**. The API loads the saved model and tokenizer at startup and exposes a prediction endpoint that accepts raw tweet text and returns the predicted sentiment.
+
+---
+
+### API Endpoint
+
+| Method | Route | Description |
+|--------|-------|-------------|
+| POST | `/predict` | Predicts the sentiment of an input tweet. |
+
+---
+
+### Interactive API Documentation
+
+FastAPI automatically generates interactive API documentation using **Swagger UI**, allowing users to test the API directly from a web browser.
+
+<img width="877" height="802" alt="swagger_docs" src="https://github.com/user-attachments/assets/6d993e5d-bb30-4f2a-b5e5-3447b4171d19" />
+
+
+---
+
+### Prediction Example
+
+<img width="823" height="534" alt="prediction_example" src="https://github.com/user-attachments/assets/062e7952-e913-45b7-a51e-259a3acd891b" />
+
+
+
+
+## 10. Docker
+
+To simplify deployment and ensure a reproducible environment, the FastAPI application was containerized using **Docker**.
+
+The Docker image includes:
+
+- Python runtime
+- Required Python packages
+- Fine-tuned BERT model
+- FastAPI application
+- Uvicorn web server
+
+The application can be built and started using:
+
+```bash
+docker build -t bert-sentiment-api .
+docker run -p 8000:8000 bert-sentiment-api
+```
+
+---
+
+## AWS Deployment
+
+The Dockerized application was deployed to **Amazon EC2**.
+
+Deployment workflow:
+
+```
+Fine-Tuned BERT
+        ↓
+Docker Image
+        ↓
+Amazon ECR
+        ↓
+Amazon EC2
+        ↓
+FastAPI REST API
+```
+
+The deployment process consisted of:
+
+1. Building the Docker image locally.
+2. Pushing the image to Amazon Elastic Container Registry (ECR).
+3. Launching an EC2 instance.
+4. Pulling the Docker image from ECR.
+5. Running the FastAPI application inside a Docker container.
+
+The deployed API successfully served real-time sentiment predictions through the REST endpoint.
+
+*(Insert screenshots of the EC2 instance, ECR repository, and successful API request here.)*
+
+---
+
+## Results
+
+The project demonstrates a complete machine learning workflow, from data exploration to production deployment.
+
+### Summary
+
+- Performed exploratory data analysis on the Airline Twitter Sentiment dataset.
+- Applied text preprocessing and feature engineering.
+- Compared CountVectorizer and TF-IDF using Logistic Regression.
+- Evaluated five classical machine learning models using 5-fold cross-validation.
+- Built a PyTorch baseline neural network and improved its performance using early stopping.
+- Fine-tuned a pretrained BERT model using Hugging Face Transformers.
+- Developed a REST API with FastAPI.
+- Containerized the application with Docker.
+- Deployed the API to AWS EC2.
+
+### Best Model Performance
+
+| Metric | Score |
+|--------|------:|
+| Accuracy | **0.82** |
+| Macro Precision | **0.76** |
+| Macro Recall | **0.79** |
+| Macro F1 | **0.77** |
+
+The fine-tuned BERT model achieved the strongest performance among all models evaluated in this project.
+
+---
+
+## Future Improvements
+
+Potential extensions to this project include:
+
+- Hyperparameter optimization using GridSearchCV or Optuna.
+- Experimenting with additional transformer models such as RoBERTa and DistilBERT.
+- Implementing automated CI/CD pipelines using GitHub Actions.
+- Deploying the application with scalable cloud services such as AWS ECS or Kubernetes.
+- Monitoring model performance in production and periodically retraining the model with newly collected data.
+- Optimizing inference speed through model quantization or ONNX Runtime.
 
 
 
