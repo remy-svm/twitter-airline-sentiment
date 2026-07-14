@@ -276,6 +276,11 @@ The project demonstrates a complete machine learning workflow, from data explora
 The fine-tuned BERT model achieved the strongest performance among all models evaluated in this project.
 
 
+## 13. Future Improvements
+
+Future work could focus on further improving model performance through more extensive hyperparameter optimization using GridSearchCV or Optuna. It would also be interesting to compare the fine-tuned BERT model with other pretrained transformer models, such as RoBERTa and DistilBERT, to evaluate the trade-offs between prediction accuracy and computational efficiency.
+
+
 
 
 
