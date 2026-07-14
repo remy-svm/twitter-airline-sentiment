@@ -39,7 +39,7 @@ Representative visualizations from the exploratory data analysis are shown below
 ### Word Clouds
 <img width="507" height="867" alt="Screenshot 2026-07-14 at 12 12 50 AM" src="https://github.com/user-attachments/assets/db1d998b-f0cf-47a4-95f3-378da7d6de3b" />
 
-## 4. Text Preprocessing
+## 5. Text Preprocessing
 The tweet text was cleaned before feature extraction and model training to reduce noise and create a consistent representation of the data. The preprocessing pipeline included the following steps:
 
 - Removed tweets with missing text.
@@ -52,7 +52,7 @@ The tweet text was cleaned before feature extraction and model training to reduc
 
 The original tweet text was preserved separately for error analysis, while the processed text was used for feature extraction and model training.
 
-## 5. Feature Extraction
+## 6. Feature Extraction
 Two text vectorization techniques were evaluated using **Logistic Regression** with **5-fold cross-validation** to determine the most effective feature representation for the classical machine learning models.
 
 | Feature Extraction | Accuracy | Macro Precision | Macro Recall | Macro F1 |
@@ -62,7 +62,7 @@ Two text vectorization techniques were evaluated using **Logistic Regression** w
 
 Although TF-IDF achieved slightly higher accuracy and macro precision, **CountVectorizer** produced the highest **Macro F1 score**, which was selected as the primary evaluation metric for comparing feature representations. Therefore, CountVectorizer was used for the subsequent classical machine learning experiments.
 
-## 6. Baseline Classical Machine Learning Models
+## 7. Baseline Classical Machine Learning Models
 
 ### Model Selection
 
@@ -107,7 +107,7 @@ Inspection of misclassified tweets revealed several common sources of error:
 
 These observations highlight a key limitation of classical bag-of-words models: they represent words independently and cannot capture contextual relationships or nuanced language. This motivated the use of a deep learning model, followed by fine-tuning a pretrained BERT model to better model contextual information.
 
-## 7. PyTorch Baseline Model
+## 8. PyTorch Baseline Model
 
 To establish a deep learning baseline, a simple neural network was implemented in **PyTorch**. The model consists of an **embedding layer**, **mean pooling**, and a **fully connected classification layer**. To improve generalization, **early stopping** was introduced using the **validation Macro F1 score** as the monitoring metric.
 
@@ -128,7 +128,7 @@ The best-performing model weights were restored before evaluation on the test se
 
 The PyTorch baseline did not outperform the best classical machine learning model (Logistic Regression + CountVectorizer). One possible reason is that the baseline neural network used a simple architecture consisting of an embedding layer, mean pooling, and a linear classifier trained from scratch. In contrast, CountVectorizer combined with Logistic Regression provides a strong baseline for text classification by effectively leveraging informative word frequencies in a dataset of this size. To better capture the context and meaning of each tweet, the next step was to fine-tune a **pretrained BERT model**.
 
-## 8. Fine-Tuned BERT
+## 9. Fine-Tuned BERT
 
 To improve upon the classical machine learning and PyTorch baseline models, a **BERT (`bert-base-uncased`)** model was fine-tuned using the **Hugging Face Transformers** library. Unlike the previous models, BERT leverages pretrained contextual language representations, allowing it to better understand the meaning of words within the context of each tweet.
 
@@ -158,7 +158,7 @@ The fine-tuned BERT model achieved the best overall performance among all models
 These results demonstrate the advantage of transfer learning for NLP tasks. By starting from a pretrained language model and fine-tuning it on the airline sentiment dataset, BERT was able to learn more robust representations of tweet semantics and produce the strongest sentiment classifier in this project.
 
 
-## 9. FastAPI
+## 10. FastAPI
 
 The fine-tuned BERT model was deployed as a REST API using **FastAPI**. The API loads the saved model and tokenizer at startup and exposes a prediction endpoint that accepts raw tweet text and returns the predicted sentiment.
 
@@ -187,7 +187,7 @@ FastAPI automatically generates interactive API documentation using **Swagger UI
 
 
 
-## 10. Docker
+## 11. Docker
 To simplify deployment and ensure a reproducible environment, the FastAPI application was containerized using **Docker**.
 The Docker image packages:
 
@@ -208,7 +208,7 @@ Containerization ensures that the application can be deployed consistently acros
 
 
 
-## 11. AWS Deployment
+## 12. AWS Deployment
 
 The Dockerized application was deployed to **Amazon EC2**.
 
@@ -248,7 +248,7 @@ The deployed API successfully served real-time sentiment predictions through the
 
 
 
-## 12. Results
+## 13. Results
 
 The project demonstrates a complete machine learning workflow, from data exploration to production deployment.
 
@@ -276,7 +276,7 @@ The project demonstrates a complete machine learning workflow, from data explora
 The fine-tuned BERT model achieved the strongest performance among all models evaluated in this project.
 
 
-## 13. Future Improvements
+## 14. Future Improvements
 
 Future work could focus on further improving model performance through more extensive hyperparameter optimization using GridSearchCV or Optuna. It would also be interesting to compare the fine-tuned BERT model with other pretrained transformer models, such as RoBERTa and DistilBERT, to evaluate the trade-offs between prediction accuracy and computational efficiency.
 
