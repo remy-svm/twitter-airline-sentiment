@@ -7,8 +7,7 @@ This project classifies the sentiment of airline-related tweets as positive, neu
 Raw Tweets -> Text Preprocessing -> Feature Extraction -> Baseline Model Comparison -> PyTorch Baseline -> Fine-Tune BERT -> FastAPI -> Docker -> AWS EC2 Deployment
 
 ## 3. Tech Stack
-Python
-Pandas
+Python $\cdot$ Pandas
 Scikit-learn
 PyTorch
 Hugging Face Transformers
