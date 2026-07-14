@@ -126,4 +126,42 @@ The best-performing model weights were restored before evaluation on the test se
 | Macro Recall | **0.72** |
 | Macro F1 | **0.71** |
 
+The PyTorch baseline did not outperform the best classical machine learning model (Logistic Regression + CountVectorizer). One possible reason is that the baseline neural network used a simple architecture consisting of an embedding layer, mean pooling, and a linear classifier trained from scratch. In contrast, CountVectorizer combined with Logistic Regression provides a strong baseline for text classification by effectively leveraging informative word frequencies in a dataset of this size. To better capture the context and meaning of each tweet, the next step was to fine-tune a **pretrained BERT model**.
+
+## 8. Fine-Tuned BERT
+## Fine-Tuned BERT
+
+To improve upon the classical machine learning and PyTorch baseline models, a **BERT (`bert-base-uncased`)** model was fine-tuned using the **Hugging Face Transformers** library. Unlike the previous models, BERT leverages pretrained contextual language representations, allowing it to better understand the meaning of words within the context of each tweet.
+
+The dataset was split into **training**, **validation**, and **test** sets. Tweets were tokenized using the pretrained BERT tokenizer, and the model was fine-tuned for sentiment classification. The best model was selected based on the **validation Macro F1 score**.
+
+### Test Set Performance
+
+| Metric | Score |
+|--------|------:|
+| Accuracy | **0.82** |
+| Macro Precision | **0.76** |
+| Macro Recall | **0.79** |
+| Macro F1 | **0.77** |
+
+### Class-wise Performance
+
+| Class | Precision | Recall | F1 Score |
+|-------|----------:|-------:|---------:|
+| Negative | 0.91 | 0.87 | 0.89 |
+| Neutral | 0.67 | 0.63 | 0.65 |
+| Positive | 0.69 | 0.87 | 0.77 |
+
+### Discussion
+
+The fine-tuned BERT model achieved the best overall performance among all models evaluated in this project, improving the **Macro F1 score from 0.71 (PyTorch baseline) to 0.77** and the **accuracy from 0.77 to 0.82**. The largest improvements were observed for the **positive** sentiment class, where BERT achieved a recall of **0.87**, demonstrating its ability to better capture contextual information than the classical machine learning models and the simple neural network baseline.
+
+These results demonstrate the advantage of transfer learning for NLP tasks. By starting from a pretrained language model and fine-tuning it on the airline sentiment dataset, BERT was able to learn more robust representations of tweet semantics and produce the strongest sentiment classifier in this project.
+
+
+
+
+
+
+
 
